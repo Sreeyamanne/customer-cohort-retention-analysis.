@@ -4,10 +4,10 @@
 How well does the store keep customers after their first order, and which regions and customer segments drive revenue and order value?
 
 ## Dataset
-- Olist Brazilian E-Commerce Public Dataset (Kaggle): [add link]
-- Period: [add start and end dates]
+- Olist Brazilian E-Commerce Public Dataset (Kaggle): https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+- About 100,000 anonymized orders; delivered orders in this analysis run from late 2016 to late 2018
 - Only delivered orders are analyzed. Customers are identified by `customer_unique_id` (`customer_id` changes with every order in this dataset).
-- Source and license: please check the license on the Kaggle dataset page and credit Olist.
+- Source: Olist (provided via Kaggle). The license is listed on the Kaggle page (I believe CC BY-NC-SA 4.0, non-commercial), so confirm it there and keep this project for portfolio use.
 
 ## Approach
 Tools: BigQuery (SQL), Tableau Public.
@@ -25,7 +25,7 @@ SQL techniques: CTEs, window functions (`FIRST_VALUE`, `NTILE`), date functions,
 1. **Mostly one-time buyers.** 93,358 customers placed 96,478 delivered orders, which is 1.03 orders per customer.
 2. **Very low repeat ordering.** In cohorts with at least 500 customers, only about 0.2% to 0.7% of a cohort orders again in the month after the first order. Later months are mostly lower.
 3. **Order value is higher in smaller states.** Among states with at least 500 customers, SP (the largest state) has the lowest average order value (about 143 BRL), while states such as PB and PA are the highest (above 200 BRL). Order value includes freight, so shipping cost is a possible explanation. This has not been tested yet.
-4. **Revenue is concentrated in a few states.** SP generates the most revenue by a wide margin, followed by RJ and MG [confirm exact figures from the dashboard].
+4. **Revenue is concentrated in a few states.** SP generates the most revenue by a wide margin, about 5.77M BRL, followed by RJ (about 2.06M BRL) and MG (about 1.82M BRL). Revenue here is delivered-order revenue (item price plus freight).
 5. **RFM scores computed.** Customers are scored 1 to 5 on recency, frequency and monetary value. By design each recency score has roughly the same number of customers (about 18,700).
 
 ## Recommendations
@@ -45,7 +45,6 @@ Live dashboard: https://public.tableau.com/app/profile/sreeya.manne/viz/E-Commer
 
 <img width="1280" height="832" alt="image" src="https://github.com/user-attachments/assets/f62333e0-3dde-4705-bcdf-d1835854bf9e" />
 <img width="2688" height="980" alt="image" src="https://github.com/user-attachments/assets/f9b5fa98-7d90-461a-aa22-700753fbff9a" />
-
 
 ## How to reproduce
 1. Load the Olist tables into BigQuery.
